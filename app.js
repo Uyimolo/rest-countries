@@ -133,7 +133,7 @@ const countryDetails = (data) => {
     (border) => `
     <button class="border-btn">${border}</button>
     `
-  );
+  ).join("")
 
 
   isBorderless()
