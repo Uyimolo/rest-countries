@@ -18,7 +18,6 @@ const getData = (url, action) => {
 };
 
 //show err
-
 const error = (text) => {
   const errEle = document.createElement("p");
   errEle.classList.add("error");
@@ -83,7 +82,7 @@ searchInput.addEventListener("change", () => {
 const showCountryDetails = (e) => {
   document.querySelector(".country-details").classList.add("show");
   document.querySelector(".countries").classList.add("hide");
-  document.querySelector("body").classList.add("no-scroll);
+  document.querySelector("body").classList.add("no-scroll");
   const countryName =
     e.target.parentElement.nextElementSibling.querySelector(
       ".name"
@@ -182,5 +181,5 @@ const isBorderless = () => {
 const back = () => {
   document.querySelector(".countries").classList.remove("hide");
   document.querySelector(".country-details").classList.remove("show");
-  document.querySelector("body").classList.remove("no-scroll);
+  document.querySelector("body").classList.remove("no-scroll");
 };
