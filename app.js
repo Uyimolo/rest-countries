@@ -11,22 +11,26 @@ document.addEventListener("click", (e) => {
 });
 //fetch data template
 const getData = (url, action) => {
+  let errorMsg;
+  !navigator.onLine
+    ? (errorMsg = "Please check internet connection")
+    : (errorMsg = "Input valid country name");
   fetch(url)
     .then((res) => res.json())
     .then((data) => action(data))
-    .catch((err) => error(err));
+    .catch((err) => error(errorMsg));
 };
 
 //show err
-
 const error = (text) => {
   const errEle = document.createElement("p");
   errEle.classList.add("error");
   errEle.textContent = text;
   document.querySelector("body").appendChild(errEle);
+  //remove error message after 4 minutes
   setTimeout(() => {
     document.querySelector("body").removeChild(errEle);
-  }, 3000);
+  }, 4000);
 };
 //show all countries
 document.addEventListener("DOMContentLoaded", () => {
@@ -45,7 +49,7 @@ const countries = (data) => {
           <img src=${country.flags.png} alt="" class="flag-img"/>
         </div>
       <div class="details flex">
-        <h3 class="name">${country.name.common}</h3>
+        <h3 class="name heading">${country.name.common}</h3>
         <p class="population"><span>Population:</span> ${country.population}</p>
         <p class="region"><span> Region:</span>${country.region}</p>
         <p class="capital"><span> Capital:</span> ${country.capital}</p>
@@ -81,8 +85,6 @@ searchInput.addEventListener("change", () => {
 
 // show country details
 const showCountryDetails = (e) => {
-  document.querySelector(".country-details").classList.add("show");
-  document.querySelector(".countries").classList.add("hide");
   const countryName =
     e.target.parentElement.nextElementSibling.querySelector(
       ".name"
@@ -93,6 +95,8 @@ const showCountryDetails = (e) => {
 
 // show specific country detail
 const countryDetails = (country) => {
+  document.querySelector(".country-details").classList.add("show");
+  document.querySelector(".countries").classList.add("hide");
   const data = country[0];
 
   const currencyArr = Object.values(data.currencies);
@@ -115,7 +119,7 @@ const countryDetails = (country) => {
         </div>
   <div class="full-details">
   <div class="container flex">
-  <h2>${data.name.common}</h2>
+  <h2 class"heading">${data.name.common}</h2>
   <div class="flex inner-container">
     <div class="first-half">
       <ul>
@@ -137,26 +141,25 @@ const countryDetails = (country) => {
   </div>
   </div>
   <div class="country-borders">
-    <h3>Border Countries:</h3>
+    <h3 class="heading">Border Countries:</h3>
     <div class="border-countries  flex">
       <p> none </p>
     </div>
   </div>
 </div>`;
-
+  //add back btn event listener
   document.querySelector(".back-btn").addEventListener("click", back);
 
-  // get border countries
+  // get border countries only if country has borders to avoid throwing errors
   const borders = document.querySelector(".border-countries");
-  borders.innerHTML = data.borders
-    .map(
-      (border) => `
-    <button class="border-btn">${border}</button>
-    `
-    )
-    .join("");
-
-  isBorderless();
+  if (data.borders) {
+    borders.innerHTML = data.borders
+      .map(
+        (border) => `
+    <button class="border-btn">${border}</button>`
+      )
+      .join("");
+  }
 
   document.querySelectorAll(".border-btn").forEach((btn) =>
     btn.addEventListener("click", () => {
@@ -172,13 +175,26 @@ const borderDetails = (countryCode) => {
   getData(url, countryDetails);
 };
 
-const isBorderless = () => {
-  if (!document.querySelector(".border-btn")) {
-    document.querySelector(".border-countries").innerHTML = "<p> none </p>";
-  }
-};
-
 const back = () => {
   document.querySelector(".countries").classList.remove("hide");
   document.querySelector(".country-details").classList.remove("show");
 };
+
+const darkKnight = () => {
+  document.querySelectorAll("span").forEach(span => span.classList.toggle("dark-mode"))
+  document.querySelectorAll("p").forEach(para => para.classList.toggle("dark-mode"))
+  document.querySelectorAll(".country").forEach(country => country.classList.toggle("dark-mode"))
+  document.querySelectorAll(".name").forEach(heading => heading.classList.toggle("dark-mode"))
+  document.querySelectorAll(".container").forEach(container => container.classList.toggle("dark-mode"))
+  document.querySelectorAll(".search-input").forEach(container => container.classList.toggle("dark-mode"))
+  document.querySelectorAll(".filter-by-region").forEach(container => container.classList.toggle("dark-mode"))
+  document.querySelectorAll(".filter-options").forEach(container => container.classList.toggle("dark-mode"))
+  document.querySelectorAll(".country-details").forEach(container => container.classList.toggle("dark-mode"))
+  document.querySelectorAll(".header").forEach(container => container.classList.toggle("dark-mode"))
+}
+
+//dark mode 
+document.querySelectorAll(".mode").forEach(mode => {
+  mode.addEventListener("click", darkKnight)
+})
+// 
