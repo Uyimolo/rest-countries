@@ -266,6 +266,7 @@ p {
   .country-details {
     flex-direction: row;
     height: 100vh;
+    position:fixed;
   }
   .flag {
     flex-basis: 50%;
