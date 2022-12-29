@@ -225,7 +225,6 @@ p {
   gap: 2rem;
   margin-bottom: 2rem;
 }
-
 .full-details .container ul li {
   padding: 0.3rem 0rem;
   font-weight: 800;
@@ -269,7 +268,6 @@ p {
   .country-details {
     flex-direction: row;
     height: 100vh;
-    position:fixed;
   }
   .flag {
     flex-basis: 50%;
