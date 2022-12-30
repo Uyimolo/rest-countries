@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/uyimolo)
-- Live Site URL: [Add live site URL here](https://rest-countries-wheat.vercel.app)
+- Solution URL: [GitHub](https://github.com/uyimolo)
+- Live Site URL: (https://rest-countries-wheat.vercel.app)
 
 ## My process
 
