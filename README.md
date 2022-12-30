@@ -48,9 +48,12 @@ Users should be able to:
 - Mobile-first workflow
 - Font awesome icon library
 - Google fonts 
+- Vanilla Javascript
+- Fetch API
+- Rest Countries API
 
 ### What I learned
-My first project working with an API. practiced how to work with asynchronous functions and promises using fetch(), then(), catch() etc. 
+My first project working with an API. practiced how to work with asynchronous functions and promises in javascript using fetch(), then(), catch() etc. 
 
 ### Useful resources
 - [Rest Countries official site](https://www.restcountries.com) - Their docs helped me understand how to use the API.
