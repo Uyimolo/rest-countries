@@ -9,12 +9,13 @@
 
 :root {
   --DarkBlue: #2b3945;
+  --DarkBlueLight : #454e57;
   --VeryDarkBlue: #202c37;
   --VeryDarkBlue: #111517;
-  --DarkGray: #858585;
+  --DarkGray: #cacaca;
   --VeryLightGray: #fafafa;
   --White: #ffffff;
-  --box-shadow: 0 0 5px rgba(0, 0, 0, 0.137);
+  --box-shadow: 0 0 8px rgba(0, 0, 0, 0.363);
   --border-radius: 4px;
   font-size: 14px;
 }
@@ -29,6 +30,12 @@ h4 {
 p {
   font-size: 1em;
   color: var(--DarkBlue);
+}
+p.dark-mode {
+  color: var(--DarkGray);
+}
+.heading.dark-mode{
+  color: var(--white);
 }
 .flex {
   display: flex;
@@ -46,35 +53,61 @@ p {
 }
 .mode {
   gap: 0.5rem;
+  cursor: pointer;
+  display: flex;
 }
-.light-mode {
+.dark-mode-div {
+  display: flex;
+}
+.dark-mode-div.active {
   display: none;
 }
+.light-mode-div {
+  display: none;
+}
+.light-mode-div.active {
+  display: flex;
+}
+
+.heading.dark-mode {
+  color: var(--White);
+}
+
 .error {
   width: fit-content;
-  background-color: rgba(255, 81, 0, 0.849);
+  background-color: rgba(255, 0, 0, 0.747);
+  border-radius: 5px;
   color: var(--White);
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 9rem;
   margin: auto;
   padding: 1rem 2rem;
+  box-shadow: var(--box-shadow);
 }
+
 .container {
   padding: 2rem 1rem;
   margin-top: 5rem;
   position: relative;
-  background-color: rgba(224, 224, 224, 0.267);
+  background-color: rgba(238, 238, 238, 0.267);
 }
+.container.dark-mode, .country-details.dark-mode {
+  background-color: var(--DarkBlue);
+  color: var(--DarkGray);
+}
+
 .select {
   margin-top: 1rem;
   flex-direction: column;
 }
+
 .search {
   height: fit-content;
   position: relative;
 }
+
 .search input {
   width: 100%;
   padding: 1rem 1rem 1rem 4.5rem;
@@ -82,6 +115,7 @@ p {
   border: none;
   border-radius: var(--border-radius);
 }
+
 .fa-magnifying-glass {
   position: absolute;
   top: 0;
@@ -98,6 +132,7 @@ p {
   font-weight: 600;
   position: relative;
 }
+
 .filter-by-region {
   display: flex;
   width: 100%;
@@ -107,6 +142,7 @@ p {
   border-radius: var(--border-radius);
   background-color: var(--White);
 }
+
 .filter-by-region .fa-angle-down {
   position: absolute;
   top: 0;
@@ -115,6 +151,7 @@ p {
   margin: auto;
   color: var(--DarkGray);
 }
+
 .filter-options {
   box-shadow: var(--box-shadow);
   padding: 1rem 0rem;
@@ -125,23 +162,28 @@ p {
   border-radius: var(--border-radius);
   display: none;
 }
+
 .filter-options.active {
   display: block;
 }
+
 .filter-options ul li {
   list-style: none;
   padding: 7px 1.5rem;
 }
+
 .filter-options ul li:hover {
   background: var(--DarkGray);
   color: var(--White);
 }
+
 .countries {
   width: 100%;
   margin-top: 3rem;
   flex-direction: column;
   gap: 3rem;
 }
+
 .country {
   width: 100%;
   max-width: 250px;
@@ -149,26 +191,32 @@ p {
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
 }
-.country:hover {
-  background-color: blue;
+.country.dark-mode, .search-input.dark-mode, .filter-by-region.dark-mode, .filter-options.dark-mode,.header.dark-mode{
+  background-color: var(--DarkBlueLight);
 }
 .country .flag {
   overflow: hidden;
 }
+
 .country .flag img {
   width: 100%;
 }
+
 .country .details {
   padding: 1.5rem 1.5rem 3rem;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: var(--White);
 }
+
 .country h3 {
   margin-bottom: 0.5rem;
 }
+
 .country .details span {
   font-weight: 800;
+}
+.country .details span.dark-mode {
+  color:var(--White) ;
 }
 .country-details {
   position: absolute;
@@ -180,12 +228,7 @@ p {
   gap: 2rem;
   display: none;
 }
-.hide {
-  display: none;
-}
-.show {
-  display: flex;
-}
+
 .country-details button {
   background-color: var(--White);
   border: none;
@@ -193,12 +236,14 @@ p {
   border-radius: var(--border-radius);
   padding: 0.5rem 1rem;
 }
+
 .country-details .flag img {
   height: fit-content;
   max-width: 400px;
   display: block;
   margin: auto;
 }
+
 .country-details .flag button {
   width: 8rem;
   display: flex;
@@ -207,19 +252,23 @@ p {
   gap: 0.5rem;
   margin-bottom: 3rem;
 }
+
 .country-details .flag img {
   width: 100%;
   height: 15rem;
 }
+
 .first-half h2 {
   margin-bottom: 1.5rem;
 }
+
 .full-details .container {
   flex-direction: column;
   gap: 2rem;
   background-color: transparent;
   padding: 0;
 }
+
 .full-details .inner-container {
   flex-direction: column;
   gap: 2rem;
@@ -230,50 +279,79 @@ p {
   padding: 0.3rem 0rem;
   font-weight: 800;
 }
+
 .full-details ul li span {
   font-weight: 400;
 }
+
 .country-borders h3 {
   margin-bottom: 1rem;
+}
+.heading.dark-mode {
+  color: var(--White);
 }
 .border-countries {
   align-items: center;
   row-gap: 1rem;
   flex-wrap: wrap;
 }
+
 .border-countries button {
   margin-right: 1rem;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
 @media only screen and (min-width: 768px) {
   .select {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
   }
+
   .search {
     flex-basis: 50%;
     width: 100%;
   }
+
   .select-region {
     margin-top: 0;
     flex-basis: 30%;
     width: 100%;
   }
+
   .countries {
     display: grid;
     grid-template-columns: auto auto;
   }
+
   .country-details {
     flex-direction: row;
     height: 100vh;
-    position:fixed;
   }
+
+  .show {
+    display: flex;
+  }
+
+  .hide {
+    display: none;
+  }
+
   .flag {
     flex-basis: 50%;
   }
+
   .full-details {
     flex-direction: row;
   }
+
   .full-details .container .inner-container {
     flex-direction: row;
     gap: 3rem;
@@ -284,6 +362,7 @@ p {
   :root {
     font-size: 17px;
   }
+
   .countries {
     grid-template-columns: auto auto auto;
   }
