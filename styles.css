@@ -52,13 +52,25 @@ p.dark-mode {
   z-index: 1;
 }
 .mode {
-  background-color: yellow;
   gap: 0.5rem;
   cursor: pointer;
+  display: flex;
+}
+.dark-mode-div {
+  display: flex;
+}
+.dark-mode-div.active {
+  display: none;
+}
+.light-mode-div {
+  display: none;
+}
+.light-mode-div.active {
+  display: flex;
 }
 
-.light-mode {
-  display: none;
+.heading.dark-mode {
+  color: var(--White);
 }
 
 .error {
@@ -275,7 +287,9 @@ p.dark-mode {
 .country-borders h3 {
   margin-bottom: 1rem;
 }
-
+.heading.dark-mode {
+  color: var(--White);
+}
 .border-countries {
   align-items: center;
   row-gap: 1rem;

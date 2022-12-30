@@ -49,10 +49,10 @@ const countries = (data) => {
           <img src=${country.flags.png} alt="" class="flag-img"/>
         </div>
       <div class="details flex">
-        <h3 class="name heading">${country.name.common}</h3>
-        <p class="population"><span>Population:</span> ${country.population}</p>
-        <p class="region"><span> Region:</span>${country.region}</p>
-        <p class="capital"><span> Capital:</span> ${country.capital}</p>
+        <h3 class="name heading light-mode">${country.name.common}</h3>
+        <p class="population light-mode"><span>Population:</span> ${country.population}</p>
+        <p class="region light-mode"><span> Region:</span>${country.region}</p>
+        <p class="capital light-mode"><span> Capital:</span> ${country.capital}</p>
       </div>
       </div>`
     )
@@ -61,6 +61,10 @@ const countries = (data) => {
   document
     .querySelectorAll(".flag-img")
     .forEach((flag) => flag.addEventListener("click", showCountryDetails));
+
+  if (darkMode) {
+    darkKnight();
+  }
 };
 
 //filter countries by region
@@ -119,7 +123,7 @@ const countryDetails = (country) => {
         </div>
   <div class="full-details">
   <div class="container flex">
-  <h2 class"heading">${data.name.common}</h2>
+  <h2 class"heading light-mode">${data.name.common}</h2>
   <div class="flex inner-container">
     <div class="first-half">
       <ul>
@@ -141,7 +145,7 @@ const countryDetails = (country) => {
   </div>
   </div>
   <div class="country-borders">
-    <h3 class="heading">Border Countries:</h3>
+    <h3 class="heading light-mode">Border Countries:</h3>
     <div class="border-countries  flex">
       <p> none </p>
     </div>
@@ -179,22 +183,38 @@ const back = () => {
   document.querySelector(".countries").classList.remove("hide");
   document.querySelector(".country-details").classList.remove("show");
 };
+// dark mode functionality
+let darkMode = false;
+
+const isDarkMode = () => {
+  darkMode ? (darkMode = false) : (darkMode = true);
+  console.log(darkMode);
+};
+
+const toggleModes = () => {
+  document.querySelector(".dark-mode-div").classList.toggle("active");
+  document.querySelector(".light-mode-div").classList.toggle("active");
+};
 
 const darkKnight = () => {
-  document.querySelectorAll("span").forEach(span => span.classList.toggle("dark-mode"))
-  document.querySelectorAll("p").forEach(para => para.classList.toggle("dark-mode"))
-  document.querySelectorAll(".country").forEach(country => country.classList.toggle("dark-mode"))
-  document.querySelectorAll(".name").forEach(heading => heading.classList.toggle("dark-mode"))
-  document.querySelectorAll(".container").forEach(container => container.classList.toggle("dark-mode"))
-  document.querySelectorAll(".search-input").forEach(container => container.classList.toggle("dark-mode"))
-  document.querySelectorAll(".filter-by-region").forEach(container => container.classList.toggle("dark-mode"))
-  document.querySelectorAll(".filter-options").forEach(container => container.classList.toggle("dark-mode"))
-  document.querySelectorAll(".country-details").forEach(container => container.classList.toggle("dark-mode"))
-  document.querySelectorAll(".header").forEach(container => container.classList.toggle("dark-mode"))
-}
+  toggleModes();
+  isDarkMode();
 
-//dark mode 
-document.querySelectorAll(".mode").forEach(mode => {
-  mode.addEventListener("click", darkKnight)
-})
-// 
+  document
+    .querySelectorAll(".light-mode")
+    .forEach((mode) => mode.classList.add("dark-mode"));
+};
+
+const whiteKnight = () => {
+  toggleModes();
+  isDarkMode();
+
+  document
+    .querySelectorAll(".light-mode")
+    .forEach((mode) => mode.classList.remove("dark-mode"));
+};
+document.querySelector(".dark-mode-div").addEventListener("click", darkKnight);
+
+document
+  .querySelector(".light-mode-div")
+  .addEventListener("click", whiteKnight);

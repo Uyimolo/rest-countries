@@ -12,40 +12,39 @@
     <title>Rest countries API project</title>
   </head>
   <body>
-    <header class="header flex">
+    <header class="header flex light-mode">
       <div class="logo">
-        <h3 class="heading">Where in the world</h3>
+        <h3 class="heading light-mode">Where in the world</h3>
       </div>
       <div class="modes flex">
-        <div class="dark-mode mode flex">
+        <div class="dark-mode-div mode flex">
           <i class="fa-regular fa-moon"></i>
-          <p>Dark Mode</p>
+          <p class="light-mode">Dark Mode</p>
         </div>
-        <div class="light-mode mode flex">
+        <div class="light-mode-div mode flex">
           <i class="fa-regular fa-sun"></i>
-          <img src="images/icon-sun.svg" alt="" />
-          <p>Light Mode</p>
+          <p class="light-mode">Light Mode</p>
         </div>
       </div>
     </header>
 
-    <main class="container">
-      <div class="select flex">
+    <main class="container light-mode">
+      <div class="select flex light-mode">
         <div class="search">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input
             type="text"
-            class="search-input"
+            class="search-input light-mode"
             placeholder="Search for a country..."
           />
         </div>
 
         <div class="select-region">
-          <div class="filter-by-region">
-            <p>Filter by Region</p>
+          <div class="filter-by-region light-mode">
+            <p class="light-mode">Filter by Region</p>
             <i class="fa-solid fa-angle-down"></i>
           </div>
-          <div class="filter-options">
+          <div class="filter-options light-mode">
             <ul>
               <li class="region" id="all">Earth</li>
               <li class="region" id="africa">Africa</li>
@@ -57,8 +56,8 @@
           </div>
         </div>
       </div>
-      <div class="countries flex"></div>
-      <div class="country-details flex"></div>
+      <div class="countries flex light-mode"></div>
+      <div class="country-details flex light-mode"></div>
     </main>
     <script src="app.js"></script>
   </body>
