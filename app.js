@@ -10,7 +10,7 @@ document.addEventListener("click", (e) => {
   }
 });
 //fetch data template
-const getData = (url, action) => {
+const getData = (url, action,err) => {
   let errorMsg;
   !navigator.onLine
     ? (errorMsg = "Please check internet connection")
@@ -30,7 +30,7 @@ const error = (text) => {
   //remove error message after 4 minutes
   setTimeout(() => {
     document.querySelector("body").removeChild(errEle);
-  }, 4000);
+  }, 2000);
 };
 //show all countries
 document.addEventListener("DOMContentLoaded", () => {
@@ -82,10 +82,12 @@ filter.forEach((filterBtn) => {
 
 //search for country
 const searchInput = document.querySelector(".search-input");
-searchInput.addEventListener("change", () => {
+searchInput.addEventListener("input", () => {
   const url = `https://restcountries.com/v3.1/name/${searchInput.value}`;
-  getData(url, countries);
-  searchInput.value = "";
+  if (searchInput.value) {
+    getData(url, countries);
+  }
+  // searchInput.value = "";
 });
 
 // show country details
